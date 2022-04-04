@@ -2,6 +2,7 @@
 package javapallet;
 
 import java.util.*;
+import javax.swing.JOptionPane;
 public class FormSistema extends javax.swing.JFrame {
     Stack<Pallet> pilha = new Stack<>();
     Stack<Pallet> paux = new Stack<>();
@@ -172,10 +173,19 @@ public class FormSistema extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     void mostra(){
+        // pilha principal
        listPilha.setText("");
        for(Pallet p: pilha)
           listPilha.append(p.toString()+"\n");
+       
+       // mostrando a pilha Aux
+       listAux.setText("");
+       for(Pallet p: paux)
+          listAux.append(p.toString()+"\n");
       
+      if(pilha.isEmpty())
+          lblTopo.setText("Topo: Vazio");
+      else
        lblTopo.setText("Topo: "+pilha.peek());
        
     }
@@ -191,7 +201,27 @@ public class FormSistema extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        // TODO add your handling code here:
+        Pallet p = new Pallet();
+        while(!pilha.isEmpty()){
+          p = pilha.peek();
+          if(p.getProduto().equals(txtProduto.getText())){
+              p = pilha.pop();
+              // Testar se a quantidade é o que quero remover
+              // Se for > = pop apenas - fala que removeu tudo
+              //se for < = decrementa do p.getQtd a quantidade da caixa de texto
+              // e devolve - push(p)
+              JOptionPane.showMessageDialog(null, "Encontrado");
+              mostra();
+              //break;
+          }// fim if equals
+          else{
+              JOptionPane.showMessageDialog(null, "Movendo para auxiliar:"+p.getProduto() );
+              paux.push(pilha.pop());
+              mostra();
+          }// fim else remove 
+        }// fim while isEmpty    
+        
+        // devolve da aux para principal
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     /**
