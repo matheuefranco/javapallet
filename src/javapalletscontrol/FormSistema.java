@@ -1,11 +1,12 @@
 
-package javapallet;
+package javapalletscontrol;
 
 import java.util.*;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 public class FormSistema extends javax.swing.JFrame {
-    Stack<Pallet> pilha = new Stack<>();
-    Stack<Pallet> paux = new Stack<>();
+    Stack<Produto> minhaPilha = new Stack<>();
+    Stack<Produto> pilhaAuxiliar = new Stack<>();
     
     public FormSistema() {
         initComponents();
@@ -33,9 +34,9 @@ public class FormSistema extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 51));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javapallet/pallet.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javapalletscontrol/pallete.png"))); // NOI18N
         jLabel2.setToolTipText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -43,15 +44,15 @@ public class FormSistema extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel2)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -68,7 +69,7 @@ public class FormSistema extends javax.swing.JFrame {
         jScrollPane2.setViewportView(listPilha);
 
         txtProduto.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        txtProduto.setBorder(javax.swing.BorderFactory.createTitledBorder("Produto"));
+        txtProduto.setBorder(javax.swing.BorderFactory.createTitledBorder("Descrição"));
 
         txtQtd.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         txtQtd.setBorder(javax.swing.BorderFactory.createTitledBorder("Quantidade"));
@@ -77,7 +78,7 @@ public class FormSistema extends javax.swing.JFrame {
         lblTopo.setText("Topo:");
 
         btnRemove.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnRemove.setText("Remover");
+        btnRemove.setText("Desempilhar");
         btnRemove.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +87,7 @@ public class FormSistema extends javax.swing.JFrame {
         });
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnAdd.setText("Adicionar");
+        btnAdd.setText("Empilhar");
         btnAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +96,7 @@ public class FormSistema extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
-        jLabel3.setText("Sistema de Controle de Pallets");
+        jLabel3.setText("App Pallets Control");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -111,7 +112,7 @@ public class FormSistema extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTopo)
                             .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,13 +129,14 @@ public class FormSistema extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(144, 144, 144))
+                .addGap(245, 245, 245))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTopo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -158,13 +160,13 @@ public class FormSistema extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -172,52 +174,34 @@ public class FormSistema extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    void mostra(){
-        // pilha principal
-       listPilha.setText("");
-       for(Pallet p: pilha)
-          listPilha.append(p.toString()+"\n");
-       
-       // mostrando a pilha Aux
-       listAux.setText("");
-       for(Pallet p: paux)
-          listAux.append(p.toString()+"\n");
-      
-      if(pilha.isEmpty())
-          lblTopo.setText("Topo: Vazio");
-      else
-       lblTopo.setText("Topo: "+pilha.peek());
-       
-    }
+     void mostraPilha(Stack<Produto> pilha, JTextArea meuList){
+        meuList.setText("");
+        for(Produto p:pilha)
+            meuList.append(p + "\n");
+     }// fim funcao
     
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        Pallet p = new Pallet();
-        p.setProduto(txtProduto.getText());
-        p.setQtd( Integer.parseInt(txtQtd.getText()) );
-        pilha.push(p);
-        System.out.println(pilha);
-        System.out.println("Topo:"+pilha.peek());
-        mostra();
+       // INSERIR PALLET NA PILHA
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        Pallet p = new Pallet();
-        while(!pilha.isEmpty()){
-          p = pilha.peek();
-          if(p.getProduto().equals(txtProduto.getText())){
-              p = pilha.pop();
+        Produto p;
+        while(!minhaPilha.isEmpty()){
+          p = minhaPilha.peek();
+          if(p.getDescricao().equals(txtProduto.getText())){
+              //p = minhaPilha.pop();
               // Testar se a quantidade é o que quero remover
               // Se for > = pop apenas - fala que removeu tudo
               //se for < = decrementa do p.getQtd a quantidade da caixa de texto
               // e devolve - push(p)
               JOptionPane.showMessageDialog(null, "Encontrado");
-              mostra();
+              mostraPilha(minhaPilha, listPilha);
               //break;
           }// fim if equals
           else{
-              JOptionPane.showMessageDialog(null, "Movendo para auxiliar:"+p.getProduto() );
-              paux.push(pilha.pop());
-              mostra();
+              // MOVER PARA PILHA AUXILIAR
+              mostraPilha(minhaPilha, listPilha);
+              mostraPilha(pilhaAuxiliar, listAux);
           }// fim else remove 
         }// fim while isEmpty    
         
